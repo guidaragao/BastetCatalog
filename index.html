@@ -193,7 +193,7 @@ body {
   <h1>Research Compound <span class="accent">Catalog</span></h1>
   <p>Premium-grade peptides, small molecules and research compounds. Third-party tested at ≥99% purity (HPLC). Manufactured under GMP conditions in the USA.</p>
   <div class="stats-bar">
-    <div class="stat-item"><div class="stat-num">116</div><div class="stat-label">Products</div></div>
+    <div class="stat-item"><div class="stat-num">48</div><div class="stat-label">Products</div></div>
     <div class="stat-item"><div class="stat-num">62</div><div class="stat-label">Compounds</div></div>
     <div class="stat-item"><div class="stat-num">≥99%</div><div class="stat-label">Purity</div></div>
     <div class="stat-item"><div class="stat-num">USA</div><div class="stat-label">Made In</div></div>
@@ -286,15 +286,31 @@ body {
 
 <div class="footer">
   <div class="footer-brand">Bastet Biosciences</div>
-  <p>Manufactured in the USA under strict GMP conditions.<br>Every batch third-party tested · COA available on request.<br>For Research Use Only — Not for human consumption.<br><br><a href="/cdn-cgi/l/email-protection#6801060e07280a091b1c0d1c0a0107460b0705"><span class="__cf_email__" data-cfemail="066f68606946646775726372646f692865696b">[email&#160;protected]</span></a> &nbsp;·&nbsp; Orlando, FL</p>
+  <p>Manufactured in the USA under strict GMP conditions.<br>Every batch third-party tested · COA available on request.<br>For Research Use Only — Not for human consumption.<br><br><a href="mailto:info@bastetbio.com">info@bastetbio.com</a> &nbsp;·&nbsp; 30 N Gould St, Ste N, Sheridan, WY 82801</p>
   <a href="https://wa.me/message/FKP3GT3GRIMUF1" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:12px 28px;background:#25D366;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:600;border-radius:8px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#1EBE57'" onmouseout="this.style.background='#25D366'"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Chat on WhatsApp</a>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function filterCards(tag) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   event.target.classList.add('active');
   document.querySelectorAll('.card').forEach(card => {
-    card.style.display = (tag === 'all' || (card.dataset.tags || '').includes(tag)) ? '' : 'none';
+    if (tag === 'all' || (card.dataset.tags || '').includes(tag)) {
+      card.style.display = '';
+      card.style.animation = 'fadeIn 0.4s ease';
+    } else {
+      card.style.display = 'none';
+    }
   });
-  document.querySelectorAll('.section').forEach(sect
+  document.querySelectorAll('.section').forEach(section => {
+    const visibleCards = section.querySelectorAll('.card[style=""], .card:not([style])');
+    let hasVisible = false;
+    section.querySelectorAll('.card').forEach(c => {
+      if (c.style.display !== 'none') hasVisible = true;
+    });
+    section.style.display = hasVisible ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
